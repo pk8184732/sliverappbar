@@ -25,7 +25,7 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(appBar: AppBar(title: Center(child: Text("SliverAppBar")),backgroundColor: Colors.grey),backgroundColor: Colors.amberAccent,
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
@@ -38,7 +38,7 @@ class HomePageState extends State<HomePage> {
             ),
           ),SliverList(delegate: SliverChildBuilderDelegate(
                 (BuildContext context,int index) {
-              return ListTile(
+              return ListTile(textColor: Colors.pink,
                 title: Text('Item ${1+index}'),
               );
             },childCount: 20,
