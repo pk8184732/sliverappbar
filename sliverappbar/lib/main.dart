@@ -25,7 +25,7 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("SLIVERAPPBAR"),),
+    return Scaffold(appBar: AppBar(title: Center(child: Text("SLIVERAPPBAR",style: TextStyle(color: Colors.white,fontSize: 30),)),backgroundColor: Colors.blueGrey),backgroundColor: Colors.grey,
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
@@ -39,7 +39,7 @@ class HomePageState extends State<HomePage> {
           ),SliverList(delegate: SliverChildBuilderDelegate(
                 (BuildContext context,int index) {
               return ListTile(
-                title: Text('Item ${1+index}'),
+                title: Text('Item ${1+index}',style: TextStyle(fontSize: 30,color: Colors.blueGrey)),
               );
             },childCount: 20,
           ),
@@ -51,3 +51,252 @@ class HomePageState extends State<HomePage> {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// void main(){
+//   runApp(myapp());
+// }
+// class myapp extends StatelessWidget {
+//   const myapp({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: HomePage(),
+//     );
+//   }
+// }
+//
+// class HomePage extends StatefulWidget {
+//   const HomePage({super.key});
+//
+//   @override
+//   State<HomePage> createState() => HomePageState();
+// }
+//
+// class HomePageState extends State<HomePage> {
+//
+//   Stream<List>userList() async {
+//     var students = ["Puja","Jyoti","Rani","Madhu","Muskan"];
+//     return Stream.periodic(Duration(seconds: 2), () =>students);
+//     // return Stream.periodic(Duration(seconds: 2),(computationCount) => "$computationCount",);
+//   }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(backgroundColor: Colors.grey,
+//       body: Center(
+//         child: Container(color: Colors.blueGrey,width: 300,height: 300,
+//           child: StreamBuilder(
+//             builder: (context, snapshot) {
+//               if(snapshot.hasData){
+//                 var data = snapshot.data;
+//                 return ListView.builder(
+//                   itemCount:data?.length,
+//                   itemBuilder: (context ,index){
+//                     var studentName = data?[index];
+//                     return Column(
+//                       children: [
+//                         Container(
+//                           child: Center(child: Text("$studentName",style: TextStyle(fontSize: 30,color: Colors.white),)),
+//                           height: 100,
+//                           width: 800,
+//                           color: Colors.blueGrey,
+//                         ),
+//
+//                         SizedBox(
+//                           height: 2,
+//                         )
+//                       ],
+//                     );
+//                   },);
+//               }
+//               else{
+//                 return Center(child: CircularProgressIndicator(),);
+//               }
+//             },
+//             stream: userList(),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+
+
+
+
+
+
+
+// import 'dart:async';
+//
+// import 'package:flutter/material.dart';
+//
+// void main() {
+//   runApp(MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: HomePage(),
+//     );
+//   }
+// }
+//
+// class HomePage extends StatefulWidget {
+//   @override
+//   State<HomePage> createState() => HomePageState();
+// }
+//
+// class HomePageState extends State<HomePage> {
+//   late StreamController<String> _controller;
+//
+//   var data = "";
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     _controller = StreamController<String>();
+//     _startStream();
+//   }
+//
+//   @override
+//   void dispose() {
+//     _controller.close();
+//     super.dispose();
+//   }
+//
+//   void _startStream() async {
+//     var a = 10;
+//     var b = 20;
+//     var c = a + b;
+//     if (c % 2 == 0) {
+//       _controller.add("even");
+//     } else {
+//       _controller.add("odd");
+//
+//     }
+//     return await Future.delayed(Duration(seconds: 2), () =>data);
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: Container(
+//           child: StreamBuilder<String>(
+//             builder: (context, snapshot) {
+//               if (snapshot.hasData) {
+//                 var data = snapshot.data;
+//                 return Text("$data");
+//               } else {
+//                 return Center(
+//                   child: CircularProgressIndicator(),
+//                 );
+//               }
+//             },
+//             stream: _controller.stream,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// import 'dart:async';
+//
+// import 'package:flutter/material.dart';
+//
+// void main() {
+//   runApp(MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: Text('Even Numbers StreamBuilder'),
+//         ),
+//         body: EvenNumbersStream(),
+//       ),
+//     );
+//   }
+// }
+//
+// class EvenNumbersStream extends StatefulWidget {
+//   @override
+//   _EvenNumbersStreamState createState() => _EvenNumbersStreamState();
+// }
+//
+// class _EvenNumbersStreamState extends State<EvenNumbersStream> {
+//   final StreamController<int> _controller = StreamController<int>();
+//
+//   @override
+//   void dispose() {
+//     _controller.close();
+//     super.dispose();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: [
+//         StreamBuilder<int>(
+//           stream: _controller.stream,
+//           builder: (context, snapshot) {
+//             if (snapshot.hasError) {
+//               return Text('Error: ${snapshot.error}');
+//             }
+//
+//             if (!snapshot.hasData) {
+//               return CircularProgressIndicator();
+//             }
+//
+//             return Center(
+//               child: Text('Even Number: ${snapshot.data}'),
+//             );
+//           },
+//         ),
+//         SizedBox(height: 20),
+//         ElevatedButton(
+//           onPressed: () {
+//             _startStream();
+//           },
+//           child: Text('Start Stream'),
+//         ),
+//       ],
+//     );
+//   }
+//
+//   void _startStream() async {
+//     for (int i = 2; i <= 10; i += 2) {
+//       await Future.delayed(Duration(seconds: 1));
+//       _controller.add(i);
+//     }
+//   }
+// }
