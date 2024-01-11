@@ -25,7 +25,7 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Center(child: Text("SLIVER APPBAR",style: TextStyle(color: Colors.white,fontSize: 30),)),backgroundColor: Colors.blueGrey),backgroundColor: Colors.grey,
+    return Scaffold(appBar: AppBar(title: Center(child: Text("SLIVER APPBAR",style: TextStyle(color: Colors.white,fontSize: 30 ),)),backgroundColor: Colors.blueGrey),backgroundColor: Colors.grey,
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
